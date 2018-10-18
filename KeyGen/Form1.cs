@@ -72,9 +72,9 @@ namespace KeyGen
             ///DATA SIGNATURE VERIFICATION-SERVER SIDE Parameters needed: Public Key, The Signature, The Message
             string publicKey = textBox_Verifier_PublicKey.Text;
             string message = textBox_Verifier_Message.Text;
-            string signature = textBox_verifier_signature.Text;
+            //string signature = textBox_verifier_signature.Text;
             byte[] byteMessage = Encoding.Default.GetBytes(message);
-            byte[] byteSignature = Encoding.Default.GetBytes(signature);
+            byte[] byteSignature = signature;// Encoding.Default.GetBytes(signature);
             ECDsaSignature verifier = ECDsaSignature.FromKeys(publicKey);   //creating a verifier object
             bool result = verifier.VerifyData(byteMessage, byteSignature);  //result if the signature was created by true public key
             MessageBox.Show(result?"the signature is valid":"signature is invalid");
