@@ -54,27 +54,27 @@ namespace KeyGen
 
             signer = ECDsaSignature.FromKeys(publicKey, privateKey);    //creating signer object with public and private key parameters
             byte[] byteMessage = Encoding.Default.GetBytes(message);    //converting the message object to byteArray to enable signing operation
-            //byte[] byteSignature = signer.SignData(byteMessage);    //signing operation with signer object
+            byte[] byteSignature = signer.SignData(byteMessage);    //signing operation with signer object
             signature = signer.SignData(byteMessage);
-            //string signatureStr = Encoding.Default.GetString(byteSignature);   //converting signature from byteArray to string
+            string signatureStr = Encoding.Default.GetString(byteSignature);   //converting signature from byteArray to string
 
-            //textBox_prover_signature.Text = signature;
+            textBox_prover_signature.Text = signatureStr;
+            textBox_verifier_signature.Text = signatureStr;
         }
 
         private void button_validate_Click(object sender, EventArgs e)
         {
-            //if (textBox_Verifier_PublicKey.Text == string.Empty || textBox_Verifier_Message.Text == string.Empty || textBox_verifier_signature.Text == string.Empty)
-            //{
-            //    MessageBox.Show("Please check input parameters");
-            //    return;
-            //}
+            if (textBox_Verifier_PublicKey.Text == string.Empty || textBox_Verifier_Message.Text == string.Empty || textBox_verifier_signature.Text == string.Empty)
+            {
+                MessageBox.Show("Please check input parameters");
+                return;
+            }
 
             ///DATA SIGNATURE VERIFICATION-SERVER SIDE Parameters needed: Public Key, The Signature, The Message
             string publicKey = textBox_Verifier_PublicKey.Text;
             string message = textBox_Verifier_Message.Text;
-            //string signature = textBox_verifier_signature.Text;
             byte[] byteMessage = Encoding.Default.GetBytes(message);
-            byte[] byteSignature = signature;// Encoding.Default.GetBytes(signature);
+            byte[] byteSignature = signature;
             ECDsaSignature verifier = ECDsaSignature.FromKeys(publicKey);   //creating a verifier object
             bool result = verifier.VerifyData(byteMessage, byteSignature);  //result if the signature was created by true public key
             MessageBox.Show(result?"the signature is valid":"signature is invalid");

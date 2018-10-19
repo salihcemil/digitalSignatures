@@ -163,6 +163,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_prover_signature.Location = new System.Drawing.Point(95, 197);
             this.textBox_prover_signature.Name = "textBox_prover_signature";
+            this.textBox_prover_signature.ReadOnly = true;
             this.textBox_prover_signature.Size = new System.Drawing.Size(395, 20);
             this.textBox_prover_signature.TabIndex = 11;
             // 
@@ -217,6 +218,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_verifier_signature.Location = new System.Drawing.Point(95, 134);
             this.textBox_verifier_signature.Name = "textBox_verifier_signature";
+            this.textBox_verifier_signature.ReadOnly = true;
             this.textBox_verifier_signature.Size = new System.Drawing.Size(395, 20);
             this.textBox_verifier_signature.TabIndex = 17;
             // 
